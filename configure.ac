@@ -2,13 +2,13 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ([2.69])
-AC_INIT([Fix ToUnicode CMap in PDF], [0.0.0], ,
-    [pdf-fix-tuc], [https://github.com/trueroad/pdf-fix-tuc])
+AC_INIT([Fix ToUnicode CMap in PDF for Windows], [0.0.1], ,
+    [pdf-fix-tuc], [https://github.com/t-nakayoshi/pdf-fix-tuc (Fork from https://github.com/trueroad/pdf-fix-tuc)])
 AM_INIT_AUTOMAKE([foreign])
 AC_CONFIG_SRCDIR([src/main.cc])
 AC_CONFIG_HEADERS([config.h])
 
-PACKAGE_COPYRIGHT="Copyright (C) 2021 Masamichi Hosoda. All rights reserved."
+PACKAGE_COPYRIGHT="Copyright (C) 2021 Masamichi Hosoda / 2025 Takayoshi Tagawa (Porting and modification to MSVC version). All rights reserved."
 PACKAGE_LICENSE="License: BSD-2-Clause"
 
 AC_SUBST([PACKAGE_COPYRIGHT])
@@ -106,7 +106,7 @@ PKG_CHECK_MODULES([LIBQPDF], [libqpdf])
 # Checks for header files.
 
 # Checks for typedefs, structures, and compiler characteristics.
-AX_CXX_COMPILE_STDCXX(11, [noext], [mandatory])
+AX_CXX_COMPILE_STDCXX(17, [noext], [mandatory])
 
 # Checks for library functions.
 
