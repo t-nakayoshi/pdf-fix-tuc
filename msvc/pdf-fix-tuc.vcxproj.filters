@@ -46,6 +46,8 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Manifest Include="ActiveCodePageUTF8msvc.manifest" />
+    <Manifest Include="ActiveCodePageUTF8msvc.manifest">
+      <Filter>リソース ファイル</Filter>
+    </Manifest>
   </ItemGroup>
 </Project>
