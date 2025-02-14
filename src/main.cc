@@ -7,10 +7,10 @@
 //
 // * Porting and modification to MSVC version.
 // https://github.com/t-nakayoshi/pdf-fix-tuc
-// 
+//
 // Copyright (C) 2025 Takayoshi Tagawa.
 // All rights reserved.
-// 
+//
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided that the following conditions
 // are met:
@@ -60,26 +60,23 @@ bool parse_options(int argc, char* argv[], pdf_handler* pph)
     std::string object_streams;
     bool newline_before_endstream;
     bool qdf;
-    cmd.add_flag(0, "linearize", &linearize,
-        "    Output linearized (web-optimized) PDF",
-        "Output PDF settings (QPDF)");
-    cmd.add_string(0, "object-streams", &object_streams, "preserve",
-        "    Settings for object streams",
-        "[preserve|disable|generate]",
-        "Output PDF settings (QPDF)");
-    cmd.add_flag(0, "newline-before-endstream", &newline_before_endstream,
-        "    Output newline before endstream",
-        "Output PDF settings (QPDF)");
-    cmd.add_flag(0, "qdf", &qdf,
-        "    Output QDF",
-        "Output PDF settings (QPDF)");
+    cmd.add_flag(0, "linearize", &linearize, "    Output linearized (web-optimized) PDF", "Output PDF settings (QPDF)");
+    cmd.add_string(
+        0, "object-streams", &object_streams, "preserve", "    Settings for object streams",
+        "[preserve|disable|generate]", "Output PDF settings (QPDF)"
+    );
+    cmd.add_flag(
+        0, "newline-before-endstream", &newline_before_endstream, "    Output newline before endstream",
+        "Output PDF settings (QPDF)"
+    );
+    cmd.add_flag(0, "qdf", &qdf, "    Output QDF", "Output PDF settings (QPDF)");
 
-    if (!cmd.parse(argc, argv))
+    if (!cmd.parse(argc, argv)) {
         return false;
+    }
 
-    auto uargs{ cmd.get_unamed_args() };
-    if (uargs.size() != 2)
-    {
+    auto uargs{cmd.get_unamed_args()};
+    if (uargs.size() != 2) {
         std::cout << cmd.build_help();
         return false;
     }
@@ -89,14 +86,16 @@ bool parse_options(int argc, char* argv[], pdf_handler* pph)
     pph->set_verbose(verbose);
 
     pph->set_linearize(linearize);
-    if (object_streams == "preserve")
+    if (object_streams == "preserve") {
         pph->set_object_streams(qpdf_o_preserve);
-    else if (object_streams == "generate")
+    }
+    else if (object_streams == "generate") {
         pph->set_object_streams(qpdf_o_generate);
-    else if (object_streams == "disable")
+    }
+    else if (object_streams == "disable") {
         pph->set_object_streams(qpdf_o_disable);
-    else
-    {
+    }
+    else {
         std::cerr << "unknwon --object-streams mode" << std::endl;
         return false;
     }
@@ -118,11 +117,11 @@ int main(int argc, char* argv[])
     std::setlocale(LC_ALL, "");
 #endif
 
-    try
-    {
+    try {
         pdf_handler ph;
-        if (!parse_options(argc, argv, &ph))
+        if (!parse_options(argc, argv, &ph)) {
             return false;
+        }
 
         ph.load();
         ph.process();
@@ -130,8 +129,7 @@ int main(int argc, char* argv[])
 
         std::cout << "Done." << std::endl;
     }
-    catch (std::exception& e)
-    {
+    catch (std::exception& e) {
         std::cerr << e.what() << std::endl;
         return 1;
     }

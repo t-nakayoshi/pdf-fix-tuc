@@ -1,0 +1,19 @@
+BasedOnStyle: Google
+
+IndentWidth: 4
+ColumnLimit: 120
+SortIncludes: Never
+DerivePointerAlignment: false
+PointerAlignment: Left
+AccessModifierOffset: -4
+AlignAfterOpenBracket: BlockIndent
+AlignArrayOfStructures: Right
+AlignConsecutiveAssignments: true
+AlignConsecutiveMacros: true
+AlignTrailingComments: true
+BreakBeforeBraces: Stroustrup
+AlwaysBreakBeforeMultilineStrings: true
+IndentCaseLabels: false
+FixNamespaceComments: true
+NamespaceIndentation: All
+
